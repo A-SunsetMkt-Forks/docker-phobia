@@ -24,7 +24,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/docker/docker/api/types"
+	dockerimage "github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/client"
 	"github.com/gorilla/mux"
 	"github.com/manifoldco/promptui"
@@ -70,7 +70,7 @@ func main() {
 			if c.NArg() > 0 {
 				selectedImage = c.Args().Get(0)
 			} else {
-				images, err := cli.ImageList(ctx, types.ImageListOptions{})
+				images, err := cli.ImageList(ctx, dockerimage.ListOptions{})
 				if err != nil {
 					return err
 				}
